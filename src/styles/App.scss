@@ -3,7 +3,7 @@
   flex-direction: column;
   margin: 0px;
   padding: 0px;
-  font-family: "Fira Sans", sans-serif;
+  font-family: 'Fira Sans', sans-serif;
   .padded-div {
     height: 130px;
   }
@@ -52,4 +52,6 @@
   }
 }
 
-@import "./Navbar.scss";
+@import './Navbar.scss';
+@import './Products.scss';
+@import './ProductItem.scss';

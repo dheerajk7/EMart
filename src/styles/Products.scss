@@ -1,0 +1,45 @@
+.products-container {
+  min-height: 80vh;
+  width: 60%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+
+  .products-heading {
+    display: flex;
+    margin: 2%;
+    justify-content: space-between;
+    align-items: center;
+
+    .heading {
+      font-size: 2.5rem;
+    }
+
+    .sort-price {
+      font-size: 1.2rem;
+      color: white;
+      padding: 1%;
+      background: #3171d6e6;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0px 0px 2px 2px midnightblue;
+    }
+
+    .sort-price:hover {
+      box-shadow: none;
+      border: 2px solid #ffbaba;
+    }
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .products-container {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .products-container {
+    width: 96%;
+  }
+}
