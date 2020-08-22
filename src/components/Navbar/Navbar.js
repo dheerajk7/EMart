@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   constructor(props) {
@@ -33,14 +33,14 @@ class Navbar extends Component {
         <div className="menu-icon" onClick={this.handleMenuIconClick}>
           <i
             className={
-              this.state.menuIconClicked ? "fa fa-times" : "fa fa-bars"
+              this.state.menuIconClicked ? 'fa fa-times' : 'fa fa-bars'
             }
             aria-hidden="true"
           ></i>
         </div>
         <ul
           className={
-            this.state.menuIconClicked ? "navbar-menu active" : "navbar-menu"
+            this.state.menuIconClicked ? 'navbar-menu active' : 'navbar-menu'
           }
         >
           <li>
@@ -67,7 +67,7 @@ class Navbar extends Component {
               to="/cart"
               onClick={this.handleButtonClick}
             >
-              Cart
+              <i className="fa fa-shopping-cart" aria-hidden="true"></i>
             </Link>
           </li>
         </ul>

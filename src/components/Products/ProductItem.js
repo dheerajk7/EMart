@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class ProductItem extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       price: '',
       id: '',
@@ -32,20 +31,24 @@ class ProductItem extends Component {
   };
 
   handleCancle = () => {
-    console.log('handleCancle');
+    this.props.setEditableID('');
   };
 
   handleSubmit = (id) => {
     console.log(this.state);
   };
 
+  ch = (id) => {
+    this.props.setEditableID(id);
+  };
+
   render() {
     const ratingArray = [1, 2, 3, 4, 5];
-    let edit = true;
     const { id, title, rating, price, detail, image } = this.state;
+    const { editable } = this.props;
     return (
       <div className="product-item-container" key={id}>
-        {!edit && (
+        {!editable && (
           <div className="container-div">
             <div className="image">
               <img src={image} alt={title}></img>
@@ -74,13 +77,18 @@ class ProductItem extends Component {
                 <div className="tag">Rs {price}</div>
               </div>
               <div className="buttons">
-                <i className="fa fa-pencil"></i>
+                <i
+                  className="fa fa-pencil"
+                  onClick={() => {
+                    this.ch(id);
+                  }}
+                ></i>
                 <i className="fa fa-trash"></i>
               </div>
             </div>
           </div>
         )}
-        {edit && (
+        {editable && (
           <div className="container-div">
             <div className="image">
               <img src={image} alt={title}></img>
