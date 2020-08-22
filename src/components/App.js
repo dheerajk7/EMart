@@ -1,15 +1,17 @@
 import React from "react";
 import "../styles/App.scss";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navbar } from "../components";
+import { Navbar, Product } from "../components";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <h1>Working</h1>
+        <div className="blank-nav"></div>
+        <Navbar />
+        <div className="blank-progress-bar"></div>
         <Switch>
-          <Route to="/" component={Navbar} />
+          <Route to="/" exact component={Product} />
         </Switch>
       </div>
     </Router>

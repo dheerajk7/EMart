@@ -77,5 +77,8 @@ class Navbar extends Component {
 }
 
 // passing store props to component
+function mapStateToProps(state) {
+  return {};
+}
 
-export default Navbar;
+export default connect(mapStateToProps)(Navbar);
