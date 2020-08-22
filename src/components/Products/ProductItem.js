@@ -76,6 +76,7 @@ class ProductItem extends Component {
                 <div>Price:</div>
                 <div className="tag">Rs {price}</div>
               </div>
+              <div className="add-to-cart">Add to Cart</div>
               <div className="buttons">
                 <i
                   className="fa fa-pencil"

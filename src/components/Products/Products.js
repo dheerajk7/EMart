@@ -92,7 +92,11 @@ class Products extends Component {
         <div className="products-heading">
           <div className="heading">Products </div>
           <div className="sort-price" onClick={this.onClickSortByPrice}>
-            {sortByPrice ? 'Remove Sorting' : 'Sort By Price'}
+            {sortByPrice ? (
+              <i className="fa fa-times" aria-hidden="true"></i>
+            ) : (
+              'Sort By Price'
+            )}
           </div>
         </div>
         {product.map((product) => {

@@ -1,0 +1,103 @@
+.add-product-container {
+  align-self: center;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .heading {
+    font-size: 3.5rem;
+    padding: 2%;
+    color: darkslategrey;
+  }
+
+  form {
+    width: 80%;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: 40px;
+
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      margin: 3% 0%;
+      font-size: 1.4rem;
+      padding: 1% 0%;
+      color: navy;
+
+      input {
+        height: 1.8rem;
+        border: 2px solid navy;
+        padding: 1%;
+        font-size: 1.2rem;
+        border-radius: 10px;
+      }
+
+      input:focus {
+        outline: none;
+        border: 2.5px solid #d66228;
+      }
+
+      textarea {
+        height: 6rem;
+        border: 2px solid navy;
+        padding: 1%;
+        font-size: 1.2rem;
+        border-radius: 10px;
+      }
+
+      textarea:focus {
+        outline: none;
+        border: 2.5px solid #d66228;
+      }
+    }
+    button {
+      padding: 1.5%;
+      width: 42%;
+      color: navy;
+      font-weight: bold;
+      font-size: 1.5rem;
+      background: #5affc880;
+      box-shadow: 0px 0px 2px 2px #423a3a;
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    button:focus {
+      outline: none;
+      background: #5affc8c2;
+      box-shadow: 0px 0px 2px 2px #000000;
+    }
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .add-product-container {
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .add-product-container {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .add-product-container {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .add-product-container {
+    width: 85%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .add-product-container {
+    width: 95%;
+  }
+}

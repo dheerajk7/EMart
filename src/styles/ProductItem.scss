@@ -100,6 +100,20 @@
         }
       }
 
+      .add-to-cart {
+        padding: 5%;
+        margin: 0% 3%;
+        background: darkseagreen;
+        text-align: center;
+        box-shadow: 0px 0px 2px 2px dimgrey;
+        color: navy;
+        cursor: pointer;
+      }
+
+      .add-to-cart:hover {
+        box-shadow: 0px 0px 2px 2px #000a84;
+      }
+
       .buttons {
         font-size: 1.6rem;
         color: blue;
