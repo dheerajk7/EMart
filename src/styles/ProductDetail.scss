@@ -1,3 +1,4 @@
+// styles for product detail container
 .product-detail-container {
   align-self: center;
   display: flex;
@@ -23,6 +24,7 @@
     }
   }
 
+  // styles for credentails container
   .creadential-container {
     color: blue;
     margin: 3%;
@@ -43,6 +45,7 @@
     }
   }
 
+  // styles for button add to cart
   .button {
     margin-bottom: 50px;
     width: 50%;
@@ -64,6 +67,7 @@
   }
 }
 
+// chaging main container size of various sizes of screen
 @media screen and (max-width: 1100px) {
   .product-detail-container {
     width: 50%;

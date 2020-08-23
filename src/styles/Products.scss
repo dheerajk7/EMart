@@ -1,3 +1,4 @@
+// product container styles
 .products-container {
   min-height: 80vh;
   width: 60%;
@@ -5,6 +6,7 @@
   display: flex;
   flex-direction: column;
 
+  // heading of product container
   .products-heading {
     display: flex;
     margin: 2%;
@@ -15,6 +17,7 @@
       font-size: 2.5rem;
     }
 
+    // styles for sort price button
     .sort-price {
       font-size: 1.2rem;
       color: white;
@@ -32,6 +35,7 @@
   }
 }
 
+// changing width of product container on different screen sizes
 @media screen and (max-width: 1180px) {
   .products-container {
     width: 80%;

@@ -1,3 +1,4 @@
+// styles for progress bar container
 .progress-bar-container {
   background: linear-gradient(
     90deg,
@@ -15,6 +16,7 @@
   margin: 0px;
   z-index: 9;
 
+  // styles for progress bar
   .progress-bar-line {
     position: absolute;
     top: 0;
@@ -36,6 +38,7 @@
     transform: translateX(10%);
   }
 
+  // animating progress bar
   @keyframes progress {
     from {
       transform: translateX(0%);
