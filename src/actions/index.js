@@ -5,6 +5,9 @@ import {
   fetchCartItem,
   addProduct,
   deleteProduct,
+  addProductToCart,
+  deleteCartItem,
+  updateProductItem,
 } from './product';
 
 export {
@@ -18,4 +21,7 @@ export {
   fetchCartItem,
   addProduct,
   deleteProduct,
+  deleteCartItem,
+  addProductToCart,
+  updateProductItem,
 };

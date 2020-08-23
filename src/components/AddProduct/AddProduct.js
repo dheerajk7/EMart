@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import { connect } from 'react-redux';
 import { successMessageAlert, errorMessageAlert } from '../../helpers';
 import {
@@ -19,6 +19,7 @@ class AddProduct extends Component {
       rating: 0,
       image: '',
     };
+    this.formRef = createRef();
   }
 
   componentDidMount() {
@@ -41,7 +42,6 @@ class AddProduct extends Component {
   }
 
   handleChange = (input, value) => {
-    console.log(this.state);
     if (input === 'title') {
       this.setState({ title: value });
     } else if (input === 'rating') {
@@ -70,13 +70,14 @@ class AddProduct extends Component {
       return;
     }
     dispatch(addProduct(this.state));
+    this.formRef.current.reset();
   };
 
   render() {
     return (
       <div className="add-product-container">
         <div className="heading">Add Product</div>
-        <form>
+        <form ref={this.formRef}>
           <div className="input-container">
             <label>Title</label>
             <input

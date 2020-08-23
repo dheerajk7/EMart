@@ -1,4 +1,4 @@
-import { UPDATE_CART, UPDATE_PRODUCT } from './actionTypes';
+import { UPDATE_CART, UPDATE_PRODUCT, LOADING_STOP } from './actionTypes';
 import { loadingStart, loadingStop } from './progress';
 import { APIUrls } from '../helpers';
 import { setMessage } from './alert';
@@ -83,8 +83,71 @@ export function deleteProduct(id) {
     })
       .then((response) => response.json())
       .then((data) => {
+        dispatch(setMessage('Successful', 'Product Deleted'));
         dispatch(fetchProduct());
       });
     await dispatch(loadingStop());
+  };
+}
+
+// adding product to cart
+export function addProductToCart(product) {
+  return async (dispatch) => {
+    await dispatch(loadingStart());
+    const url = APIUrls.getCartItem();
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchCartItem());
+        dispatch(setMessage('Successful', 'Product Added to Cart'));
+      });
+    await dispatch(loadingStop());
+  };
+}
+
+// for deleting cart Item
+export function deleteCartItem(id) {
+  return async (dispatch) => {
+    await dispatch(loadingStart());
+    const url = APIUrls.deleteCartItemUrl(id);
+    await fetch(url, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchCartItem());
+        dispatch(
+          setMessage('Successful', 'Item removed from Cart Successfully')
+        );
+      });
+    await dispatch(loadingStop());
+  };
+}
+
+export function updateProductItem(id, product) {
+  return async (dispatch) => {
+    await dispatch(loadingStart());
+    delete product.id;
+    const url = APIUrls.updateProductUrl(id);
+    console.log(url, product, 'rpr');
+    fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(fetchProduct());
+        dispatch(setMessage('Successful', 'Product Update Successfully'));
+      });
+    dispatch(loadingStop());
   };
 }

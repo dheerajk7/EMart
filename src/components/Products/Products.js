@@ -7,15 +7,17 @@ import {
   loadingStop,
   deleteProduct,
   fetchProduct,
+  addProductToCart,
+  updateProductItem,
 } from '../../actions';
 import { errorMessageAlert, successMessageAlert } from '../../helpers';
 
 function compare_item(a, b) {
   // a should come before b in the sorted order
-  if (a.price < b.price) {
+  if (eval(a.price) < eval(b.price)) {
     return -1;
     // a should come after b in the sorted order
-  } else if (a.price > b.price) {
+  } else if (eval(a.price) > eval(b.price)) {
     return 1;
     // and and b are the same
   } else {
@@ -61,12 +63,17 @@ class Products extends Component {
     this.setState({ editableID: id });
   };
 
-  handleAddToCart = (id) => {
-    console.log(id);
+  handleAddToCart = (product) => {
+    this.props.dispatch(addProductToCart(product));
   };
 
   handleDeleteButton = (id) => {
     this.props.dispatch(deleteProduct(id));
+  };
+
+  handleSaveButton = (id, product) => {
+    console.log('a', id, product);
+    this.props.dispatch(updateProductItem(id, product));
   };
 
   render() {
@@ -99,6 +106,7 @@ class Products extends Component {
               setEditableID={this.setEditableItem}
               cartButtonClick={this.handleAddToCart}
               deleteButtonClick={this.handleDeleteButton}
+              handleSaveButton={this.handleSaveButton}
               key={product.id}
               isCart={false}
             />

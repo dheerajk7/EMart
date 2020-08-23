@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 
 class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       price: '',
-      id: '',
       title: '',
       rating: '',
       detail: '',
@@ -35,14 +34,15 @@ class ProductItem extends Component {
   };
 
   handleSubmit = (id) => {
-    console.log(this.state);
+    this.props.handleSaveButton(id, this.state);
+    this.props.setEditableID('');
   };
 
   handleCartButtonClick = (id) => {
     this.props.cartButtonClick(id);
   };
 
-  ch = (id) => {
+  handlePencilClick = (id) => {
     this.props.setEditableID(id);
   };
 
@@ -52,6 +52,7 @@ class ProductItem extends Component {
 
   render() {
     const ratingArray = [1, 2, 3, 4, 5];
+    const { product } = this.props;
     const { id, title, rating, price, detail, image } = this.state;
     const { editable, isCart } = this.props;
     return (
@@ -87,7 +88,7 @@ class ProductItem extends Component {
               <div
                 className="add-to-cart"
                 onClick={() => {
-                  this.handleCartButtonClick(id);
+                  this.handleCartButtonClick(product);
                 }}
               >
                 {isCart ? 'Remove from Cart' : 'Add to Cart'}
@@ -97,7 +98,7 @@ class ProductItem extends Component {
                   <i
                     className="fa fa-pencil"
                     onClick={() => {
-                      this.ch(id);
+                      this.handlePencilClick(id);
                     }}
                   ></i>
                   <i
@@ -155,9 +156,9 @@ class ProductItem extends Component {
               <div className="price">
                 <div>Price:</div>
                 <div className="tag">
-                  Rs{' '}
+                  Rs:
                   <input
-                    type="text"
+                    type="number"
                     value={price}
                     required
                     onChange={(event) => {

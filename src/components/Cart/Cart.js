@@ -7,6 +7,7 @@ import {
   clearMessage,
   loadingStop,
   fetchCartItem,
+  deleteCartItem,
 } from '../../actions';
 
 class Cart extends Component {
@@ -30,13 +31,15 @@ class Cart extends Component {
     }
   }
 
-  deleteItemFromCart = (id) => {};
+  deleteItemFromCart = (product) => {
+    this.props.dispatch(deleteCartItem(product.id));
+  };
 
   render() {
     let product = this.props.product;
     let total = 0;
     for (let i = 0; i < product.length; i++) {
-      total += product[i].price;
+      total += eval(product[i].price);
     }
     return (
       <div className="products-container">
