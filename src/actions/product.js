@@ -1,6 +1,7 @@
 import { UPDATE_CART, UPDATE_PRODUCT } from './actionTypes';
 import { loadingStart, loadingStop } from './progress';
 import { APIUrls } from '../helpers';
+import { setMessage } from './alert';
 
 function updateCart(cart) {
   return {
@@ -42,6 +43,26 @@ export function fetchCartItem() {
       .then((response) => response.json())
       .then((data) => {
         dispatch(updateCart(data));
+      });
+    await dispatch(loadingStop());
+  };
+}
+
+export function addProduct(product) {
+  return async (dispatch) => {
+    await dispatch(loadingStart());
+    const url = APIUrls.getProducts();
+    await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(setMessage('Successful', 'Product Added'));
+        dispatch(fetchProduct());
       });
     await dispatch(loadingStop());
   };

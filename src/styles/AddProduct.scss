@@ -25,6 +25,10 @@
       padding: 1% 0%;
       color: navy;
 
+      input[type='number'] {
+        -moz-appearance: textfield;
+      }
+
       input {
         height: 1.8rem;
         border: 2px solid navy;
