@@ -11,11 +11,12 @@ class Navbar extends Component {
     };
   }
 
+  // fetching cart item to get the count of the item present in cart to show on cart icon
   componentDidMount() {
     this.props.dispatch(fetchCartItem());
   }
 
-  // handle menu icon click
+  // handle menu icon click for small size display
   handleMenuIconClick = () => {
     this.setState({ menuIconClicked: !this.state.menuIconClicked });
   };
@@ -83,11 +84,12 @@ class Navbar extends Component {
   }
 }
 
-// passing store props to component
+// passing store item to props of component
 function mapStateToProps(state) {
   return {
     cartItemCount: state.product.cartItemCount,
   };
 }
 
+// sending props to component
 export default connect(mapStateToProps)(Navbar);

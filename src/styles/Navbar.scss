@@ -1,3 +1,4 @@
+// styles for navbar container
 .navbar-container {
   background-image: linear-gradient(to right, #040d57, #001666, #0a259d);
   height: 65px;
@@ -11,6 +12,7 @@
   top: 0;
   z-index: 10;
 
+  // navbar-logo styles
   .navbar-logo {
     justify-self: start;
     font-size: 2rem;
@@ -26,6 +28,7 @@
     font-size: inherit;
   }
 
+  // menu-icon to be hidden on bigger screens
   .menu-icon {
     display: none;
     font-size: 2.8rem;
@@ -33,6 +36,7 @@
     cursor: pointer;
   }
 
+  // navbar menu items
   .navbar-menu {
     display: grid;
     grid-template-columns: repeat(5, auto);
@@ -44,6 +48,7 @@
     /* margin-right: 1.5rem; */
   }
 
+  // cart icon styles
   .cart {
     background-color: #1a1aea;
     border-radius: 10px;
@@ -52,6 +57,7 @@
     }
   }
 
+  // link or button on navbar
   .navbar-links {
     color: whitesmoke;
     padding: 0.5rem 1rem;
@@ -72,7 +78,9 @@
   }
 }
 
+// changing navbar to collapsed navbar
 @media screen and (max-width: 960px) {
+  // position of main container
   .navbar-container {
     position: fixed;
     top: 0;
@@ -81,6 +89,7 @@
       padding-left: 0;
     }
 
+    // menu of navbar
     .navbar-menu {
       display: flex;
       flex-direction: column;
@@ -93,6 +102,7 @@
       /* transition: all 0.5s ease-in; */
     }
 
+    // active component
     .active {
       background-image: linear-gradient(to right, #040d57, #001666, #0a259d);
       left: 0;
@@ -101,6 +111,7 @@
       z-index: 1;
     }
 
+    // navbar items
     .navbar-links {
       text-align: center;
       padding: 1rem;
@@ -116,6 +127,7 @@
       display: none;
     }
 
+    // navbar logo
     .navbar-logo {
       position: absolute;
       top: 0;
@@ -123,6 +135,7 @@
       transform: translate(20%, 36%);
     }
 
+    // menu icon
     .menu-icon {
       display: block;
       position: absolute;

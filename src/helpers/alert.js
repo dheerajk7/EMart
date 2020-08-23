@@ -1,5 +1,6 @@
 import swal from 'sweetalert';
 
+// for showing alert for the missing field
 export function missingFieldAlert(title, field) {
   swal({
     title: title,
@@ -9,6 +10,7 @@ export function missingFieldAlert(title, field) {
   });
 }
 
+// for showing alert of the error message with detail
 export function errorMessageAlert(title, error) {
   swal({
     title: title,
@@ -18,6 +20,7 @@ export function errorMessageAlert(title, error) {
   });
 }
 
+// for showing alert of the success message with detail
 export function successMessageAlert(title, message) {
   swal({
     title: title,

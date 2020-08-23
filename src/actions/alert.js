@@ -14,12 +14,14 @@ function setMessage(title, detail) {
   };
 }
 
+// for clearing message in alert after showing alert
 function clearMessage() {
   return {
     type: CLEAR_MESSAGE,
   };
 }
 
+// for setting up error in state
 function setError(title, detail) {
   return {
     type: SET_ERROR,
@@ -28,6 +30,7 @@ function setError(title, detail) {
   };
 }
 
+// for clearing error from the state after showing alert
 function clearError() {
   return {
     type: CLEAR_ERROR,

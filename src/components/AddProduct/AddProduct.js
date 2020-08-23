@@ -22,6 +22,7 @@ class AddProduct extends Component {
     this.formRef = createRef();
   }
 
+  // at component mounting setting loading to false
   componentDidMount() {
     const { isLoading, dispatch } = this.props;
     if (isLoading === true) {
@@ -29,6 +30,8 @@ class AddProduct extends Component {
     }
   }
 
+  // at component updation checking for error and message
+  // if any error or message found then showing alert and clearing message
   componentDidUpdate() {
     const { error, dispatch, message } = this.props;
     if (message != null) {
@@ -41,6 +44,7 @@ class AddProduct extends Component {
     }
   }
 
+  // handle input form change and saving them in state
   handleChange = (input, value) => {
     if (input === 'title') {
       this.setState({ title: value });
@@ -55,10 +59,13 @@ class AddProduct extends Component {
     }
   };
 
+  // handle form submission for creating new product
   handleSubmit = (event) => {
     event.preventDefault();
     const { title, price, detail, rating, image } = this.state;
     const { dispatch } = this.props;
+    // checking if any field in form is empty
+    // showing alert if any field is empty
     if (
       title.length === 0 ||
       price.length === 0 ||
@@ -69,10 +76,12 @@ class AddProduct extends Component {
       dispatch(setError('Missing Field', 'Please Enter All Fields'));
       return;
     }
+    // adding product
     dispatch(addProduct(this.state));
     this.formRef.current.reset();
   };
 
+  // rendering add product component
   render() {
     return (
       <div className="add-product-container">
@@ -140,6 +149,7 @@ class AddProduct extends Component {
   }
 }
 
+// mapping store item to props
 function mapStateToProps(state) {
   return {
     error: state.alert.error,
@@ -148,4 +158,5 @@ function mapStateToProps(state) {
   };
 }
 
+// sending props to component
 export default connect(mapStateToProps)(AddProduct);

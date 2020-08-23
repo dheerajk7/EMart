@@ -12,6 +12,7 @@ import {
 } from '../../actions';
 import { errorMessageAlert, successMessageAlert } from '../../helpers';
 
+// comparting function to comparet price of two function
 function compare_item(a, b) {
   // a should come before b in the sorted order
   if (eval(a.price) < eval(b.price)) {
@@ -34,6 +35,8 @@ class Products extends Component {
     };
   }
 
+  // at component mounting setting loading to false
+  // fethcing all the product as well to show on screen
   componentDidMount() {
     const { isLoading, dispatch } = this.props;
     if (isLoading === true) {
@@ -42,11 +45,15 @@ class Products extends Component {
     dispatch(fetchProduct());
   }
 
+  //handle sort button click
+  // onclicking sort button toggling sort button status
   onClickSortByPrice = () => {
     const { sortByPrice } = this.state;
     this.setState({ sortByPrice: !sortByPrice });
   };
 
+  // at component updation checking for error and message
+  // if any error or message found then showing alert and clearing message
   componentDidUpdate() {
     const { error, dispatch, message } = this.props;
     if (message != null) {
@@ -59,23 +66,32 @@ class Products extends Component {
     }
   }
 
+  // set editable item's id in state
+  // so when the item got render if these id matches with that item
+  // then this item will open in edit mode instead of normal mode
   setEditableItem = (id) => {
     this.setState({ editableID: id });
   };
 
+  // adding product to the cart
   handleAddToCart = (product) => {
     this.props.dispatch(addProductToCart(product));
   };
 
+  // deleting product
   handleDeleteButton = (id) => {
     this.props.dispatch(deleteProduct(id));
   };
 
+  // after edition is done
+  // saving the new value of product in db and updating it as well
+  // passing relevent function to apply on different places in props
   handleSaveButton = (id, product) => {
-    console.log('a', id, product);
     this.props.dispatch(updateProductItem(id, product));
   };
 
+  // rending item on basis of various parameters
+  // if sorting then sorted order otherwise in normal order
   render() {
     let { editableID, sortByPrice } = this.state;
     let { product } = this.props;
@@ -117,6 +133,7 @@ class Products extends Component {
   }
 }
 
+// mapping store item to props
 function mapStateToProps(state) {
   return {
     isLoading: state.progress.isLoading,
@@ -126,4 +143,5 @@ function mapStateToProps(state) {
   };
 }
 
+// sending props to component
 export default connect(mapStateToProps)(Products);

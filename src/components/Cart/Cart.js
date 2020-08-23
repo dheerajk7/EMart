@@ -11,6 +11,8 @@ import {
 } from '../../actions';
 
 class Cart extends Component {
+  // at component mounting setting loading to false
+  // fetching all the cart item and saving them in store
   componentDidMount() {
     const { isLoading, dispatch } = this.props;
     if (isLoading === true) {
@@ -19,6 +21,8 @@ class Cart extends Component {
     dispatch(fetchCartItem());
   }
 
+  // at component updation checking for error and message
+  // if any error or message found then showing alert and clearing message
   componentDidUpdate() {
     const { error, dispatch, message } = this.props;
     if (message != null) {
@@ -31,13 +35,16 @@ class Cart extends Component {
     }
   }
 
+  // handleing removing from cart button
   deleteItemFromCart = (product) => {
     this.props.dispatch(deleteCartItem(product.id));
   };
 
+  // rendering cart component
   render() {
     let product = this.props.product;
     let total = 0;
+    // calculating value of total amout of all products
     for (let i = 0; i < product.length; i++) {
       total += eval(product[i].price);
     }
@@ -73,6 +80,7 @@ class Cart extends Component {
   }
 }
 
+// mapping store item to props
 function mapStateToProps(state) {
   return {
     error: state.alert.error,
@@ -82,4 +90,5 @@ function mapStateToProps(state) {
   };
 }
 
+// sending props to component
 export default connect(mapStateToProps)(Cart);

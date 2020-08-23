@@ -13,3 +13,6 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 
 // action type related to cart
 export const UPDATE_CART = 'UPDATE_CART';
+
+// action type for updating current product
+export const ADD_CURRENT_PRODUCT = 'ADD_CURRENT_PRODUCT';

@@ -11,7 +11,7 @@ const initialState = {
   error: null,
 };
 
-// changing store on the basis of different actions for setting alerts
+// changing message state in store on the basis of different actions for setting alerts
 export default function auth(state = initialState, action) {
   switch (action.type) {
     case SET_MESSAGE:

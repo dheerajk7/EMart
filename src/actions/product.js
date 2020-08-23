@@ -1,4 +1,8 @@
-import { UPDATE_CART, UPDATE_PRODUCT, LOADING_STOP } from './actionTypes';
+import {
+  UPDATE_CART,
+  UPDATE_PRODUCT,
+  ADD_CURRENT_PRODUCT,
+} from './actionTypes';
 import { loadingStart, loadingStop } from './progress';
 import { APIUrls } from '../helpers';
 import { setMessage } from './alert';
@@ -130,12 +134,11 @@ export function deleteCartItem(id) {
   };
 }
 
+// for updating product item with id and new product values
 export function updateProductItem(id, product) {
   return async (dispatch) => {
     await dispatch(loadingStart());
-    delete product.id;
     const url = APIUrls.updateProductUrl(id);
-    console.log(url, product, 'rpr');
     fetch(url, {
       method: 'PUT',
       headers: {
@@ -149,5 +152,29 @@ export function updateProductItem(id, product) {
         dispatch(setMessage('Successful', 'Product Update Successfully'));
       });
     dispatch(loadingStop());
+  };
+}
+
+// saving current product to the store
+function updateCurrentProduct(product) {
+  return {
+    type: ADD_CURRENT_PRODUCT,
+    currentProduct: product,
+  };
+}
+
+// fetching single product by id
+export function fetchOneProduct(id) {
+  return async (dispatch) => {
+    await dispatch(loadingStart());
+    const url = APIUrls.fetchOneProductUrl(id);
+    fetch(url, {
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch(updateCurrentProduct(data));
+      });
+    await dispatch(loadingStop());
   };
 }

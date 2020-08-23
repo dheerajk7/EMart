@@ -8,8 +8,10 @@ import {
   addProductToCart,
   deleteCartItem,
   updateProductItem,
+  fetchOneProduct,
 } from './product';
 
+// getting all the action from sub modules and exporting them from here
 export {
   setMessage,
   clearMessage,
@@ -23,5 +25,6 @@ export {
   deleteProduct,
   deleteCartItem,
   addProductToCart,
+  fetchOneProduct,
   updateProductItem,
 };

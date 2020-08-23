@@ -1,3 +1,4 @@
+// main container with and position for adding product
 .add-product-container {
   align-self: center;
   width: 50%;
@@ -5,12 +6,14 @@
   flex-direction: column;
   align-items: center;
 
+  // heading styles
   .heading {
     font-size: 3.5rem;
     padding: 2%;
     color: darkslategrey;
   }
 
+  // form styles of add product
   form {
     width: 80%;
     margin: 0px;
@@ -25,10 +28,12 @@
       padding: 1% 0%;
       color: navy;
 
+      // to restrict input type to behave as textfield but taking only number
       input[type='number'] {
         -moz-appearance: textfield;
       }
 
+      // input tag styles
       input {
         height: 1.8rem;
         border: 2px solid navy;
@@ -55,6 +60,7 @@
         border: 2.5px solid #d66228;
       }
     }
+    // submit button styles
     button {
       padding: 1.5%;
       width: 42%;
@@ -76,6 +82,7 @@
   }
 }
 
+// setting up different widht on different sizes
 @media screen and (max-width: 1180px) {
   .add-product-container {
     width: 60%;

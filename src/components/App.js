@@ -2,23 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Navbar, Product, ProgressBar, AddProduct, Cart } from '../components';
-import { clearError, clearMessage } from '../actions';
-import { errorMessageAlert, successMessageAlert } from '../helpers';
+// importing all the component here to use thems
+import {
+  Navbar,
+  Product,
+  ProgressBar,
+  AddProduct,
+  Cart,
+  ProductDetail,
+} from '../components';
 
 class App extends Component {
-  componentDidMount() {
-    const { error, dispatch, message } = this.props;
-    if (message != null) {
-      successMessageAlert(message.title, message.detail);
-      dispatch(clearMessage());
-    }
-    if (error != null) {
-      errorMessageAlert('Registration Error', error);
-      dispatch(clearError());
-    }
-  }
-
+  // rendering app componet
+  // using router to manage which component to render
   render() {
     const { isLoading } = this.props;
     return (
@@ -32,6 +28,7 @@ class App extends Component {
             <Route path="/add-product" component={AddProduct} />
             <Route path="/" exact component={Product} />
             <Route path="/cart" component={Cart} />
+            <Route path="/product-detail/:id" component={ProductDetail} />
           </Switch>
         </div>
       </Router>
@@ -39,6 +36,7 @@ class App extends Component {
   }
 }
 
+// mapping store item to props
 function mapStateToProps(state) {
   return {
     isLoading: state.progress.isLoading,
@@ -47,4 +45,5 @@ function mapStateToProps(state) {
   };
 }
 
+// sending props to component
 export default connect(mapStateToProps)(App);

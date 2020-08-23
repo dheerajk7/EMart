@@ -1,4 +1,5 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class ProductItem extends Component {
   constructor(props) {
@@ -12,11 +13,13 @@ class ProductItem extends Component {
     };
   }
 
+  // on mouting setting product detail in state for updating value when its in editing mode
   componentDidMount() {
     const { id, title, rating, price, detail, image } = this.props.product;
     this.setState({ id, title, rating, price, detail, image });
   }
 
+  // on changing any of the attribute changing the value in state in editable mode
   handleChange = (label, value) => {
     if (label === 'detail') {
       this.setState({ detail: value });
@@ -29,27 +32,34 @@ class ProductItem extends Component {
     }
   };
 
+  // switching editing mode off
   handleCancle = () => {
     this.props.setEditableID('');
   };
 
+  // on submit the product in editable state setting new value of product
   handleSubmit = (id) => {
     this.props.handleSaveButton(id, this.state);
     this.props.setEditableID('');
   };
 
+  // handling cart button click whether to add to cart or remove from cart
   handleCartButtonClick = (id) => {
     this.props.cartButtonClick(id);
   };
 
+  // handling edit button click to change the mode to editable
+  // changing editable mode to on
   handlePencilClick = (id) => {
     this.props.setEditableID(id);
   };
 
+  // handeling delete button to delete product
   handleDeleteButton = (id) => {
     this.props.deleteButtonClick(id);
   };
 
+  // rendering product item container
   render() {
     const ratingArray = [1, 2, 3, 4, 5];
     const { product } = this.props;
@@ -63,7 +73,9 @@ class ProductItem extends Component {
               <img src={image} alt={title}></img>
             </div>
             <div className="product-detail">
-              <div className="title">{title}</div>
+              <Link to={`/product-detail/${id}`}>
+                <div className="title">{title}</div>
+              </Link>
               <div className="detail">{detail}</div>
               <div className="rating">
                 {ratingArray.map((value) => {
@@ -184,4 +196,5 @@ class ProductItem extends Component {
   }
 }
 
+// exporting container
 export default ProductItem;

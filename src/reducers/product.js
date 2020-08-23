@@ -1,13 +1,18 @@
-import { UPDATE_CART, UPDATE_PRODUCT } from '../actions/actionTypes';
+import {
+  UPDATE_CART,
+  UPDATE_PRODUCT,
+  ADD_CURRENT_PRODUCT,
+} from '../actions/actionTypes';
 
-// loading reducer intial state to maintain message and error
+// loading reducer intial state to maintain product at different places
 const initialState = {
   products: [],
   cart: [],
   cartItemCount: 0,
+  currentProduct: null,
 };
 
-// changing store on the basis of different actions for setting alerts
+// changing store on the basis of different actions for setting product in different states
 export default function auth(state = initialState, action) {
   switch (action.type) {
     case UPDATE_PRODUCT: {
@@ -18,6 +23,12 @@ export default function auth(state = initialState, action) {
         ...state,
         cart: action.cart,
         cartItemCount: action.itemCount,
+      };
+    }
+    case ADD_CURRENT_PRODUCT: {
+      return {
+        ...state,
+        currentProduct: action.currentProduct,
       };
     }
     default:
