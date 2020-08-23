@@ -30,17 +30,14 @@ class Cart extends Component {
     }
   }
 
-  deleteItemFromCart = (id) => {
-    console.log('delete id', id);
-  };
+  deleteItemFromCart = (id) => {};
 
   render() {
     let product = this.props.product;
     let total = 0;
     for (let i = 0; i < product.length; i++) {
-      total = eval(product[i].price);
+      total += product[i].price;
     }
-    console.log(total, 'tital');
     return (
       <div className="products-container">
         <div className="products-heading">

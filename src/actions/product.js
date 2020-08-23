@@ -3,6 +3,7 @@ import { loadingStart, loadingStop } from './progress';
 import { APIUrls } from '../helpers';
 import { setMessage } from './alert';
 
+// updating product in cart in store
 function updateCart(cart) {
   return {
     type: UPDATE_CART,
@@ -11,6 +12,7 @@ function updateCart(cart) {
   };
 }
 
+// updating product in store
 function updateProduct(product) {
   return {
     type: UPDATE_PRODUCT,
@@ -18,6 +20,7 @@ function updateProduct(product) {
   };
 }
 
+// getting product from API
 export function fetchProduct() {
   return async (dispatch) => {
     await dispatch(loadingStart());
@@ -33,6 +36,7 @@ export function fetchProduct() {
   };
 }
 
+// getting cart Item from API
 export function fetchCartItem() {
   return async (dispatch) => {
     await dispatch(loadingStart());
@@ -48,6 +52,7 @@ export function fetchCartItem() {
   };
 }
 
+// adding product to the API
 export function addProduct(product) {
   return async (dispatch) => {
     await dispatch(loadingStart());
@@ -62,6 +67,22 @@ export function addProduct(product) {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setMessage('Successful', 'Product Added'));
+        dispatch(fetchProduct());
+      });
+    await dispatch(loadingStop());
+  };
+}
+
+// deleting product from API
+export function deleteProduct(id) {
+  return async (dispatch) => {
+    await dispatch(loadingStart());
+    const url = APIUrls.deleteProductUrl(id);
+    await fetch(url, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
         dispatch(fetchProduct());
       });
     await dispatch(loadingStop());

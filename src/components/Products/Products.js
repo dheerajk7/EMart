@@ -5,7 +5,7 @@ import {
   clearError,
   clearMessage,
   loadingStop,
-  loadingStart,
+  deleteProduct,
   fetchProduct,
 } from '../../actions';
 import { errorMessageAlert, successMessageAlert } from '../../helpers';
@@ -63,7 +63,10 @@ class Products extends Component {
 
   handleAddToCart = (id) => {
     console.log(id);
-    this.props.dispatch(loadingStart());
+  };
+
+  handleDeleteButton = (id) => {
+    this.props.dispatch(deleteProduct(id));
   };
 
   render() {
@@ -76,7 +79,6 @@ class Products extends Component {
     } else {
       product = this.props.product;
     }
-    console.log(product, '');
     return (
       <div className="products-container">
         <div className="products-heading">
@@ -96,6 +98,7 @@ class Products extends Component {
               editable={editableID === product.id}
               setEditableID={this.setEditableItem}
               cartButtonClick={this.handleAddToCart}
+              deleteButtonClick={this.handleDeleteButton}
               key={product.id}
               isCart={false}
             />

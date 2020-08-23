@@ -46,6 +46,10 @@ class ProductItem extends Component {
     this.props.setEditableID(id);
   };
 
+  handleDeleteButton = (id) => {
+    this.props.deleteButtonClick(id);
+  };
+
   render() {
     const ratingArray = [1, 2, 3, 4, 5];
     const { id, title, rating, price, detail, image } = this.state;
@@ -96,7 +100,12 @@ class ProductItem extends Component {
                       this.ch(id);
                     }}
                   ></i>
-                  <i className="fa fa-trash"></i>
+                  <i
+                    className="fa fa-trash"
+                    onClick={() => {
+                      this.handleDeleteButton(id);
+                    }}
+                  ></i>
                 </div>
               )}
             </div>

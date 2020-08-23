@@ -1,6 +1,11 @@
 import { setMessage, clearMessage, setError, clearError } from './alert';
 import { loadingStart, loadingStop } from './progress';
-import { fetchProduct, fetchCartItem, addProduct } from './product';
+import {
+  fetchProduct,
+  fetchCartItem,
+  addProduct,
+  deleteProduct,
+} from './product';
 
 export {
   setMessage,
@@ -12,4 +17,5 @@ export {
   fetchProduct,
   fetchCartItem,
   addProduct,
+  deleteProduct,
 };
