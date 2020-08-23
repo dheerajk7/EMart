@@ -7,3 +7,9 @@ export const SET_MESSAGE = 'SET_MESSAGE';
 export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
 export const SET_ERROR = 'SET_ERROR';
 export const CLEAR_ERROR = 'CLEAR_ERROR';
+
+// actions type related to product
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+
+// action type related to cart
+export const UPDATE_CART = 'UPDATE_CART';

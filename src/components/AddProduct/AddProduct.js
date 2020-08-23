@@ -30,22 +30,22 @@ class AddProduct extends Component {
         <form>
           <div className="input-container">
             <label>Title</label>
-            <input type="text" required="true" placeholder="Title" />
+            <input type="text" required={true} placeholder="Title" />
           </div>
           <div className="input-container">
             <label>Price</label>
-            <input type="text" required="true" placeholder="Price" />
+            <input type="text" required={true} placeholder="Price" />
           </div>
           <div className="input-container">
             <label>Rating</label>
-            <input type="text" required="true" placeholdere="Rating" />
+            <input type="number" required={true} placeholder="Rating" />
           </div>
           <div className="input-container">
             <label>Detail</label>
             <textarea
               rows="5"
               type="text"
-              required="true"
+              required={true}
               placeholder="Detail"
             />
           </div>

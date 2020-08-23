@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { fetchCartItem } from '../../actions';
 
 class Navbar extends Component {
   constructor(props) {
@@ -8,6 +9,10 @@ class Navbar extends Component {
     this.state = {
       menuIconClicked: false,
     };
+  }
+
+  componentDidMount() {
+    this.props.dispatch(fetchCartItem());
   }
 
   // handle menu icon click
@@ -23,6 +28,7 @@ class Navbar extends Component {
 
   // rendering navbar component
   render() {
+    const { cartItemCount } = this.props;
     return (
       <nav className="navbar-container unselectable">
         <div className="navbar-logo">
@@ -63,11 +69,12 @@ class Navbar extends Component {
           </li>
           <li>
             <Link
-              className="navbar-links"
+              className="navbar-links cart"
               to="/cart"
               onClick={this.handleButtonClick}
             >
               <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+              <span>{cartItemCount > 0 ? cartItemCount : ''}</span>
             </Link>
           </li>
         </ul>
@@ -78,7 +85,9 @@ class Navbar extends Component {
 
 // passing store props to component
 function mapStateToProps(state) {
-  return {};
+  return {
+    cartItemCount: state.product.cartItemCount,
+  };
 }
 
 export default connect(mapStateToProps)(Navbar);

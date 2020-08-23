@@ -38,6 +38,10 @@ class ProductItem extends Component {
     console.log(this.state);
   };
 
+  handleCartButtonClick = (id) => {
+    this.props.cartButtonClick(id);
+  };
+
   ch = (id) => {
     this.props.setEditableID(id);
   };
@@ -45,7 +49,7 @@ class ProductItem extends Component {
   render() {
     const ratingArray = [1, 2, 3, 4, 5];
     const { id, title, rating, price, detail, image } = this.state;
-    const { editable } = this.props;
+    const { editable, isCart } = this.props;
     return (
       <div className="product-item-container" key={id}>
         {!editable && (
@@ -76,16 +80,25 @@ class ProductItem extends Component {
                 <div>Price:</div>
                 <div className="tag">Rs {price}</div>
               </div>
-              <div className="add-to-cart">Add to Cart</div>
-              <div className="buttons">
-                <i
-                  className="fa fa-pencil"
-                  onClick={() => {
-                    this.ch(id);
-                  }}
-                ></i>
-                <i className="fa fa-trash"></i>
+              <div
+                className="add-to-cart"
+                onClick={() => {
+                  this.handleCartButtonClick(id);
+                }}
+              >
+                {isCart ? 'Remove from Cart' : 'Add to Cart'}
               </div>
+              {!isCart && (
+                <div className="buttons">
+                  <i
+                    className="fa fa-pencil"
+                    onClick={() => {
+                      this.ch(id);
+                    }}
+                  ></i>
+                  <i className="fa fa-trash"></i>
+                </div>
+              )}
             </div>
           </div>
         )}

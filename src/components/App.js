@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/App.scss';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Navbar, Product, ProgressBar, AddProduct } from '../components';
+import { Navbar, Product, ProgressBar, AddProduct, Cart } from '../components';
 import { clearError, clearMessage } from '../actions';
 import { errorMessageAlert, successMessageAlert } from '../helpers';
 
@@ -31,6 +31,7 @@ class App extends Component {
           <Switch>
             <Route path="/add-product" component={AddProduct} />
             <Route path="/" exact component={Product} />
+            <Route path="/cart" component={Cart} />
           </Switch>
         </div>
       </Router>

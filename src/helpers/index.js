@@ -3,5 +3,6 @@ import {
   errorMessageAlert,
   successMessageAlert,
 } from './alert';
+import { APIUrls } from './urls';
 
-export { missingFieldAlert, errorMessageAlert, successMessageAlert };
+export { missingFieldAlert, errorMessageAlert, successMessageAlert, APIUrls };

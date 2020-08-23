@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import ProductItem from './ProductItem';
 import { connect } from 'react-redux';
-import { clearError, clearMessage, loadingStop } from '../../actions';
+import {
+  clearError,
+  clearMessage,
+  loadingStop,
+  loadingStart,
+  fetchProduct,
+} from '../../actions';
 import { errorMessageAlert, successMessageAlert } from '../../helpers';
 
 function compare_item(a, b) {
@@ -23,28 +29,6 @@ class Products extends Component {
     this.state = {
       editableID: '',
       sortByPrice: false,
-      product: [
-        {
-          id: '321',
-          title: 'Mango',
-          price: 1222,
-          rating: 3,
-          image:
-            'https://hips.hearstapps.com/del.h-cdn.co/assets/cm/15/10/54f9207ab7c5b_-_kesar_mango.jpg?fill=160:190&resize=480:*',
-          detail:
-            'This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. ',
-        },
-        {
-          id: '123',
-          title: 'Apple',
-          price: 1000,
-          rating: 4,
-          image:
-            'https://media.istockphoto.com/photos/red-apple-picture-id184276818?k=6&m=184276818&s=612x612&w=0&h=Fm2-2w98ahP4jUkj3UjgPa-dIqEHlRrsTxdA_a-Cclk=',
-          detail:
-            'This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. This is product. ',
-        },
-      ],
     };
   }
 
@@ -53,6 +37,7 @@ class Products extends Component {
     if (isLoading === true) {
       dispatch(loadingStop());
     }
+    dispatch(fetchProduct());
   }
 
   onClickSortByPrice = () => {
@@ -67,7 +52,7 @@ class Products extends Component {
       dispatch(clearMessage());
     }
     if (error != null) {
-      errorMessageAlert('Registration Error', error);
+      errorMessageAlert(error.title, error.detail);
       dispatch(clearError());
     }
   }
@@ -76,17 +61,22 @@ class Products extends Component {
     this.setState({ editableID: id });
   };
 
+  handleAddToCart = (id) => {
+    console.log(id);
+    this.props.dispatch(loadingStart());
+  };
+
   render() {
     let { editableID, sortByPrice } = this.state;
-    let product = '';
-    let list = [...this.state.product];
+    let { product } = this.props;
     if (sortByPrice) {
+      let list = [];
+      list = [...product];
       product = list.sort(compare_item);
     } else {
-      product = list;
+      product = this.props.product;
     }
-    console.log(product, 'finalPorrr');
-
+    console.log(product, '');
     return (
       <div className="products-container">
         <div className="products-heading">
@@ -105,7 +95,9 @@ class Products extends Component {
               product={product}
               editable={editableID === product.id}
               setEditableID={this.setEditableItem}
+              cartButtonClick={this.handleAddToCart}
               key={product.id}
+              isCart={false}
             />
           );
         })}
@@ -119,6 +111,7 @@ function mapStateToProps(state) {
     isLoading: state.progress.isLoading,
     error: state.alert.error,
     message: state.alert.message,
+    product: state.product.products,
   };
 }
 
