@@ -4,9 +4,9 @@ E Mart is e commerce website where you can buy product and get the detail, ratin
 
 # Preview
 
-## Visit app at https://emart-77f69.web.app/
+![preview image](./assets/images/preview.gif)
 
-### Techstack :- HTML, SCSS, JS, React, Rest API
+## Visit app at https://emart-77f69.web.app/
 
 # Various Functionality
 
@@ -24,6 +24,10 @@ E Mart is e commerce website where you can buy product and get the detail, ratin
 4. Adding Product to Cart
 5. Removing Product from Cart
 6. Button to sort product on product page
+
+# Techstack
+
+### HTML, SCSS, JS, React, Rest API
 
 # Instructions to install
 
